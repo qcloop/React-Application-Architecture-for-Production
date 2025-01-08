@@ -1,0 +1,22 @@
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: jobs-app@undefined
+npm error Found: next@12.3.4
+npm error node_modules/next
+npm error   next@"^12.2.5" from the root project
+npm error
+npm error Could not resolve dependency:
+npm error peer next@"^13.5.0 || ^14.0.0" from @storybook/nextjs@8.2.2
+npm error node_modules/@storybook/nextjs
+npm error   dev @storybook/nextjs@"*" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error /Users/uzokirov/.npm/_logs/2024-07-12T20_23_30_131Z-eresolve-report.txt
+
+npm error A complete log of this run can be found in: /Users/uzokirov/.npm/_logs/2024-07-12T20_23_30_131Z-debug-0.log

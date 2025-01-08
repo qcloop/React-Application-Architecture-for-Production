@@ -12,13 +12,13 @@ const LandingPage = () => {
     <>
       <Center flexDirection="column" h="full">
         <VStack maxW="3xl" spacing="8">
-          <Heading size="3xl">Jobs App</Heading>
+          <Heading size="3xl">Jobs App for Bubba</Heading>
           <Text
             fontSize={{ base: 'lg', md: 'xl' }}
             maxW="2xl"
             color="muted"
           >
-            Manage your careers pages
+            Manage your careers pages? Bubba
           </Text>
           <Link href={'/dashboard/jobs'} variant="solid">
             Get Started
