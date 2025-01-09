@@ -9,7 +9,7 @@ import { Job, SaveJobData } from '../../types';
 import React from 'react';
 
 export type SaveJobFormProps = {
-  job?: Job;
+  job: Job;
   onSuccess: () => void;
 };
 
