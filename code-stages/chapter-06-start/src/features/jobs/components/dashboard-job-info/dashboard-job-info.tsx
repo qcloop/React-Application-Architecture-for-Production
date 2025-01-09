@@ -5,9 +5,9 @@ import {
   HStack,
   Box,
 } from '@chakra-ui/react';
-
+import { PlusSquareIcon } from '@chakra-ui/icons';
 import { Content } from '@/components/content';
-
+import { Link } from '@/components/link';
 import { Job } from '../../types';
 
 export const DashboardJobInfo = ({
@@ -22,6 +22,13 @@ export const DashboardJobInfo = ({
         <HStack spacing="12">
           <Text>{job.department}</Text>
           <Text>{job.location}</Text>
+          <Link
+            icon={<PlusSquareIcon />}
+            variant="solid"
+            href={`/dashboard/jobs/save/${job.id}`}
+          >
+            Edit Job
+          </Link>
         </HStack>
       </VStack>
       <Box w="full">

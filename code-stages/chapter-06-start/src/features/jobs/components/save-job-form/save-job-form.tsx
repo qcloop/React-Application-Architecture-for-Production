@@ -4,23 +4,26 @@ import { useForm } from 'react-hook-form';
 import { Button } from '@/components/button';
 import { InputField } from '@/components/form';
 
-import { useCreateJob } from '../../api/create-job';
-import { CreateJobData } from '../../types';
+import { useSaveJob } from '../../api/save-job';
+import { Job, SaveJobData } from '../../types';
+import React from 'react';
 
-export type CreateJobFormProps = {
+export type SaveJobFormProps = {
+  job?: Job;
   onSuccess: () => void;
 };
 
-export const CreateJobForm = ({
+export const SaveJobForm = ({
+  job,
   onSuccess,
-}: CreateJobFormProps) => {
-  const createJob = useCreateJob({ onSuccess });
+}: SaveJobFormProps) => {
+  const saveJob = useSaveJob({ onSuccess });
 
   const { register, handleSubmit, formState } =
-    useForm<CreateJobData>();
+    useForm<SaveJobData>();
 
-  const onSubmit = (data: CreateJobData) => {
-    createJob.submit({ data });
+  const onSubmit = (data: SaveJobData) => {
+    saveJob.submit({ data });
   };
 
   return (
@@ -33,6 +36,7 @@ export const CreateJobForm = ({
       >
         <InputField
           label="Position"
+          defaultValue={job?.position}
           {...register('position', {
             required: 'Required',
           })}
@@ -40,13 +44,16 @@ export const CreateJobForm = ({
         />
         <InputField
           label="Department"
+          defaultValue={job?.department}
           {...register('department', {
             required: 'Required',
           })}
           error={formState.errors['department']}
         />
+
         <InputField
           label="Location"
+          defaultValue={job?.location}
           {...register('location', {
             required: 'Required',
           })}
@@ -56,6 +63,7 @@ export const CreateJobForm = ({
         <InputField
           type="textarea"
           label="Info"
+          defaultValue={job?.info}
           {...register('info', {
             required: 'Required',
           })}
@@ -63,11 +71,11 @@ export const CreateJobForm = ({
         />
 
         <Button
-          isDisabled={createJob.isLoading}
-          isLoading={createJob.isLoading}
+          isDisabled={saveJob.isLoading}
+          isLoading={saveJob.isLoading}
           type="submit"
         >
-          Create
+          Save
         </Button>
       </Stack>
     </Box>

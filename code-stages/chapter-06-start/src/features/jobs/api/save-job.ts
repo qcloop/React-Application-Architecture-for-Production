@@ -3,27 +3,27 @@ import { useMutation } from '@tanstack/react-query';
 import { apiClient } from '@/lib/api-client';
 import { queryClient } from '@/lib/react-query';
 
-import { Job, CreateJobData } from '../types';
+import { Job, SaveJobData } from '../types';
 
-type CreateJobOptions = {
-  data: CreateJobData;
+type SaveJobOptions = {
+  data: SaveJobData;
 };
 
-export const createJob = ({
+export const saveJob = ({
   data,
-}: CreateJobOptions): Promise<Job> => {
+}: SaveJobOptions): Promise<Job> => {
   return apiClient.post(`/jobs`, data);
 };
 
-type UseCreateJobOptions = {
+type UseSaveJobOptions = {
   onSuccess?: (job: Job) => void;
 };
 
-export const useCreateJob = ({
+export const useSaveJob = ({
   onSuccess,
-}: UseCreateJobOptions = {}) => {
+}: UseSaveJobOptions = {}) => {
   const { mutate: submit, isLoading } = useMutation({
-    mutationFn: createJob,
+    mutationFn: saveJob,
     onSuccess: (job) => {
       queryClient.invalidateQueries(['jobs']);
       onSuccess?.(job);

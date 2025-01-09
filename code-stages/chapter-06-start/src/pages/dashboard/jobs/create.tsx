@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 
 import { Seo } from '@/components/seo';
-import { CreateJobForm } from '@/features/jobs';
+import { SaveJobForm } from '@/features/jobs';
 import { DashboardLayout } from '@/layouts/dashboard-layout';
 
 const DashboardCreateJobPage = () => {
@@ -17,7 +17,7 @@ const DashboardCreateJobPage = () => {
     <>
       <Seo title="Create Job" />
       <Heading mb="8">Create Job</Heading>
-      <CreateJobForm onSuccess={onSuccess} />
+      <SaveJobForm onSuccess={onSuccess} />
     </>
   );
 };

@@ -57,22 +57,36 @@ const getJobHandler = rest.get(
   }
 );
 
-const createJobHandler = rest.post(
+const saveJobHandler = rest.post(
   `${API_URL}/jobs`,
   async (req, res, ctx) => {
     const user = requireAuth({ req });
-
+    const jobId = req.params.jobId as string;
     const jobData = await req.json();
 
-    const job = db.job.create({
-      ...jobData,
-      organizationId: user?.organizationId,
+    const job = db.job.findFirst({
+      where: {
+        id: {
+          equals: jobId,
+        },
+      },
     });
+
+    const result = !job
+      ? db.job.create({
+          ...jobData,
+          organizationId: user?.organizationId,
+        })
+      : db.job.update({
+          jobId: job?.id,
+          ...jobData,
+          organizationId: user?.organizationId,
+        });
 
     return res(
       ctx.delay(300),
       ctx.status(200),
-      ctx.json(job)
+      ctx.json(result)
     );
   }
 );
@@ -80,5 +94,5 @@ const createJobHandler = rest.post(
 export const jobsHandlers = [
   getJobsHandler,
   getJobHandler,
-  createJobHandler,
+  saveJobHandler,
 ];
